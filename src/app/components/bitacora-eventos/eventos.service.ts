@@ -15,6 +15,7 @@ export class EventosService {
   apiUrl = environment.apiUrl;
 
   //------------------------------------------------------------------------------------------------------------//
+
   //FUNCION PARA OBTENER LA LISTA DE CATEGORIAS DE EVENTOS
   getListaCategorias():Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/bitacora/categorias`)
