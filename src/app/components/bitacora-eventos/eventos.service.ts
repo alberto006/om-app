@@ -31,6 +31,7 @@ export class EventosService {
     return this.http.get<any>(`${this.apiUrl}/bitacora/eventos`)
     .pipe(
       tap(),
+      
       catchError(this.handleError<any>('Error al obtener la lista de categorias'))
     )
   }
