@@ -1,0 +1,9 @@
+{
+    "/api/*": {
+      "target": "http://10.8.8.81:1880",
+      "secure": false,
+      
+      "logLevel":"debug"
+      
+    }
+  }

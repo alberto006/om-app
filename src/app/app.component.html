@@ -1,0 +1,52 @@
+<mat-drawer-container class="nav-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+
+    <!--Menu de aplicacion-->
+    <div *ngIf="usuarioSesion() != ''">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let m of modulos">
+          <mat-expansion-panel-header>
+            <mat-panel-description>
+              {{m}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let p of permisos">
+            <a mat-button class="text-ops-indigo" routerLink="/{{p.COMPONENTE}}" *ngIf="m == p.MODULO">
+              {{p.COMPONENTE}} <mat-icon>keyboard_arrow_right</mat-icon>
+            </a>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <!--Menu de aplicacion-->
+
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <mat-toolbar class="bg-ops-indigo txt-white">
+      <div *ngIf="usuarioSesion() != ''">
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <span>OM App</span>
+      <span class="toolbar-spacer"></span>
+
+      <div *ngIf="usuarioSesion() != ''">
+        <button mat-stroked-button color="accent" (click)="CerrarSesion()">Salir ({{usuarioSesion()}})</button>
+      </div>
+
+    </mat-toolbar>
+
+    
+
+
+    <div class="container container-fluid mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-drawer-container>
