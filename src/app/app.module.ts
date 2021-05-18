@@ -59,7 +59,7 @@ import { CampaingInTimeComponent, ModalListaAgentes, ModalBitacoraCrm, ModalBita
 import { AuthComponent } from './components/auth/auth.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BitacoraReporteComponent } from './components/bitacora-reporte/bitacora-reporte.component';
-import { BitacoraEventosComponent, ModalEventoAgregar } from './components/bitacora-eventos/bitacora-eventos.component';
+import { BitacoraEventosComponent, ModalEventoAgregar,ModalEventoEditar } from './components/bitacora-eventos/bitacora-eventos.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 
 
@@ -70,7 +70,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
     AuthComponent,
     PageNotFoundComponent,
     BitacoraReporteComponent,
-    BitacoraEventosComponent,ModalEventoAgregar,
+    BitacoraEventosComponent,ModalEventoAgregar,ModalEventoEditar,
     InicioComponent
   ],
   imports: [

@@ -37,6 +37,18 @@ export class BitacoraEventosComponent implements OnInit {
     
   }
 
+  updateData():void{
+    this.service.getListaCategorias().subscribe(r=>{
+      this.Categorias = r      
+    })    
+    this.service.getListaEventos().subscribe(r=>{
+      this.Eventos = r      
+    })  
+
+  }
+
+  
+
   @HostListener("window:resize",[]) onResize(){
     var width = window.innerWidth;
     if(width<1000){
@@ -55,19 +67,31 @@ export class BitacoraEventosComponent implements OnInit {
     }
   }
 
-  openModalAgregar(data:any){
+  openModalAgregar(){
     const dialogRef = this.dialog.open(ModalEventoAgregar,{
-      width:'90%',
-      data:data
+      width:'70%',
+      data:this.Categorias,
+      panelClass:[''],      
     })
 
-    dialogRef.afterClosed().subscribe(result=>{
-      if(!result){return}
+    dialogRef.afterClosed().subscribe(datos=>{
+      if(!datos){return}
+      this.service.postEvento(datos.categoriaID,datos.evento,datos.descripcion).subscribe(r=>{
+        this.notificacion('Evento agregado con exito')
+        this.updateData();        
+      })
+    })
+  }
+
+  notificacion(mensaje:string){
+    this._snackBar.open(mensaje,'cerrar',{
+      duration:5000,
+      horizontalPosition:'end',
+      verticalPosition:'top'
     })
   }
 
 }
-
 
 
 @Component({
@@ -85,10 +109,27 @@ export class ModalEventoAgregar implements OnInit{
 
   ngOnInit():void{
 
-  }
+  }  
 
   onNoClick():void{
     this.dialogRef.close
   }
 }
 
+
+@Component({
+  selector:'modal-evento-editar',
+  templateUrl:'modal-evento-editar.html',
+  styleUrls:['./bitacora-eventos.component.css']
+})
+export class ModalEventoEditar {
+  constructor(
+    public dialogRef:MatDialogRef<ModalEventoEditar>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private service:EventosService,    
+  ){}
+
+  onNoClick():void{
+    this.dialogRef.close
+  }
+}
