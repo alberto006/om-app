@@ -1,1 +1,43 @@
-<p>bitacora-eventos works!</p>
+<mat-card class="mat-elevation-z8 txt-ops-indigo">
+    <h2>Eventos y categorias de incidentes</h2>
+    <mat-accordion class="txt-white">
+        <mat-expansion-panel *ngFor="let cat of Categorias" class="bg-ops-indigo txt-white">
+            <mat-expansion-panel-header class="bg-ops-indigo txt-white">
+
+                <mat-panel-title class="bg-ops-indigo txt-white">
+                    <b>{{cat.CATEGORIA}}</b>
+                </mat-panel-title>
+
+                <mat-panel-description class="bg-ops-indigo txt-white">
+                    <span class="txt-white" *ngIf="!Removable">{{cat.DESCRIPCION}}</span>
+                </mat-panel-description>
+
+            </mat-expansion-panel-header>
+            <!-- EVENTOS POR CATEGORIA -->            
+
+            <div class="table-responsive">
+
+                <table class="table w-100">
+                    <tr *ngFor="let ev of Eventos">
+                        <td class="text-left txt-white" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
+                            <span><b>{{ev.EVENTO}}</b> </span>
+                        </td>
+                        <td class="txt-white" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID && !Removable">
+                            {{ev.DESCRIPCION}}
+                        </td>
+                        <td class="text-right" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
+                            <button mat-raised-button color="warn" class="txt-white">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <!-- EVENTOS POR CATEGORIA -->
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <hr>   
+    
+</mat-card>

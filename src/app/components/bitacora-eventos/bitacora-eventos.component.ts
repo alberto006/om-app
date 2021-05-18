@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { EventosService } from './eventos.service';
 
 
@@ -10,10 +12,34 @@ import { EventosService } from './eventos.service';
 })
 export class BitacoraEventosComponent implements OnInit {
 
-  constructor(private service:EventosService) { }
+  constructor(private service:EventosService, private _snackBar:MatSnackBar) { }
 
+  Categorias:any = [];
+  Eventos:any = [];
+  Removable=false;
 
   ngOnInit(): void {
+    this.service.getListaCategorias().subscribe(r=>{
+      this.Categorias = r      
+    })
+
+    this.service.getListaEventos().subscribe(r=>{
+      this.Eventos = r      
+    })  
+
+    if(window.screen.width < 760){
+      this.Removable = true
+    }
+    
+  }
+
+  @HostListener("window:resize",[]) onResize(){
+    var width = window.innerWidth;
+    if(width<1000){
+      this.Removable = true;
+    }else{
+      this.Removable = false;
+    }
   }
 
 }
