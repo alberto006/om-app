@@ -13,7 +13,10 @@ import { EventosService } from './eventos.service';
 })
 export class BitacoraEventosComponent implements OnInit {
 
-  constructor(private service:EventosService, private _snackBar:MatSnackBar) { }
+  constructor(
+    private service:EventosService, 
+    private _snackBar:MatSnackBar, 
+    private dialog:MatDialog) { }
 
   Categorias:any = [];
   Eventos:any = [];
@@ -52,7 +55,20 @@ export class BitacoraEventosComponent implements OnInit {
     }
   }
 
+  openModalAgregar(data:any){
+    const dialogRef = this.dialog.open(ModalEventoAgregar,{
+      width:'90%',
+      data:data
+    })
+
+    dialogRef.afterClosed().subscribe(result=>{
+      if(!result){return}
+    })
+  }
+
 }
+
+
 
 @Component({
   selector:'modal-evento-agregar',
