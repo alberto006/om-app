@@ -27,13 +27,22 @@ export class BitacoraEventosComponent implements OnInit {
       this.Eventos = r      
     })  
 
-    if(window.screen.width < 760){
+    if(window.screen.width < 1000){
       this.Removable = true
     }
     
   }
 
   @HostListener("window:resize",[]) onResize(){
+    var width = window.innerWidth;
+    if(width<1000){
+      this.Removable = true;
+    }else{
+      this.Removable = false;
+    }
+  }
+
+  @HostListener("window:load",[]) onLoad(){
     var width = window.innerWidth;
     if(width<1000){
       this.Removable = true;
