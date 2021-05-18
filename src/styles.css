@@ -10,7 +10,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: 'greycliff-bold' !important; }
 
 .bg-ops-indigo{background-color: #12293F; }
-.bg-ops.yellod{background-color: #A9B400;}
+.bg-ops-yellow{background-color: #A9B400;}
+.bg-ops-gray{background-color: #666666;}
 
 .txt-ops-indigo{
     color:#12293F;

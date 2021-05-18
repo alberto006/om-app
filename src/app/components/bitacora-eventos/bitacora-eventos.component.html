@@ -1,5 +1,5 @@
 <mat-card class="mat-elevation-z8 txt-ops-indigo">
-    <h2>Eventos y categorias de incidentes</h2>
+    <h2 class="txt-ops-yellow">Eventos y categorias de incidentes</h2>
     <mat-accordion class="txt-white">
         <mat-expansion-panel *ngFor="let cat of Categorias" class="bg-ops-indigo txt-white">
             <mat-expansion-panel-header class="bg-ops-indigo txt-white">
@@ -39,5 +39,7 @@
     </mat-accordion>
 
     <hr>   
-    
+    <button mat-raised-button class="bg-ops-yellow txt-white">
+        <mat-icon>add</mat-icon> Agregar Evento
+    </button>
 </mat-card>

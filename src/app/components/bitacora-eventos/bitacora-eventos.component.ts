@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { EventosService } from './eventos.service';
@@ -51,5 +52,27 @@ export class BitacoraEventosComponent implements OnInit {
     }
   }
 
+}
+
+@Component({
+  selector:'modal-evento-agregar',
+  templateUrl:'./modal-evento-agregar.html',
+  styleUrls:['./bitacora-eventos.component.css']
+})
+export class ModalEventoAgregar implements OnInit{
+  constructor(
+    public dialogRef:MatDialogRef<ModalEventoAgregar>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private service:EventosService,
+    private _snackBar:MatSnackBar
+  ){}
+
+  ngOnInit():void{
+
+  }
+
+  onNoClick():void{
+    this.dialogRef.close
+  }
 }
 
