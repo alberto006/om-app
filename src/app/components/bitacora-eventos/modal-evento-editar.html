@@ -1,0 +1,33 @@
+<div>
+    <h2 class="txt-ops-yellow">Agregar Evento</h2>
+    <hr>
+
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Categoria</mat-label>
+        <mat-select #categoriaID [(ngModel)]="data.categoriaID">
+            <mat-option *ngFor="let cat of categorias" [value]="cat.CATEGORIAID">
+                {{cat.CATEGORIA}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Evento</mat-label>
+        <input matInput #evento [(ngModel)]="data.EVENTO" readonly>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput #descripcion [(ngModel)]="data.DESCRIPCION"></textarea>
+    </mat-form-field>
+
+    <button 
+        mat-raised-button 
+        class="bg-ops-indigo txt-white" 
+        [mat-dialog-close]="data"
+    >
+        Agregar
+    </button>
+
+</div>

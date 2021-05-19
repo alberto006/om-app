@@ -49,6 +49,17 @@ export class EventosService {
   //------------------------------------------------------------------------------------------------------------//
 
   //------------------------------------------------------------------------------------------------------------//
+  //FUNCION PARA AGREGAR UN EVENTO
+  editEvento(eventoID:number,categoriaID:number,evento:string,descripcion:string):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/bitacora/editar/evento`,{eventoID,categoriaID,evento,descripcion})
+      .pipe(
+        tap(),
+        catchError(this.handleError<any>('Error al agregar el evento'))
+      )
+  }
+  //------------------------------------------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------------------------------------------//
   // FUNCTION PARA MOSTRAR MENSAJES EN PANTALLA AL USUARIO
   notificacion(mensaje:string){
     this._snackBar.open(mensaje, 'Cerrar',{

@@ -83,6 +83,20 @@ export class BitacoraEventosComponent implements OnInit {
     })
   }
 
+  openModalEditar(data:any){
+    const dialog =this.dialog.open(ModalEventoEditar,{
+      width:'70%',
+      data:data,      
+    })
+
+    dialog.afterClosed().subscribe(r=>{
+      if(!r){return}
+      this.service.editEvento(r.eventoID,r.categoriaID,r.evento,r.descripcion);
+      this.notificacion("Evento actualizado con exito");
+      this.updateData()
+    })
+  }
+
   notificacion(mensaje:string){
     this._snackBar.open(mensaje,'cerrar',{
       duration:5000,
@@ -105,10 +119,9 @@ export class ModalEventoAgregar implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data:any,
     private service:EventosService,
     private _snackBar:MatSnackBar
-  ){}
+  ){}  
 
-  ngOnInit():void{
-
+  ngOnInit():void{    
   }  
 
   onNoClick():void{
@@ -122,12 +135,20 @@ export class ModalEventoAgregar implements OnInit{
   templateUrl:'modal-evento-editar.html',
   styleUrls:['./bitacora-eventos.component.css']
 })
-export class ModalEventoEditar {
+export class ModalEventoEditar implements OnInit {
   constructor(
     public dialogRef:MatDialogRef<ModalEventoEditar>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private service:EventosService,    
   ){}
+
+  categorias:any = [];
+
+  ngOnInit():void{
+    this.service.getListaCategorias().subscribe(r=>{
+      this.categorias = r;
+    })
+  }  
 
   onNoClick():void{
     this.dialogRef.close

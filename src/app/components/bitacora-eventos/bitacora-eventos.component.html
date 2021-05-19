@@ -27,7 +27,12 @@
                                 {{ev.DESCRIPCION}}
                             </td>
                             <td class="text-right" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
-                                <button mat-raised-button color="warn" class="txt-white">
+                                <button 
+                                    (click)="openModalEditar(ev)" 
+                                    mat-raised-button 
+                                    color="warn" 
+                                    class="txt-white"
+                                >
                                     <mat-icon>edit</mat-icon>
                                 </button>
                             </td>
