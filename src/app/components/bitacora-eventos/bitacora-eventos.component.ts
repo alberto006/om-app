@@ -1,7 +1,6 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 import { EventosService } from './eventos.service';
 
 
@@ -89,11 +88,19 @@ export class BitacoraEventosComponent implements OnInit {
       data:data,      
     })
 
-    dialog.afterClosed().subscribe(r=>{
-      if(!r){return}
-      this.service.editEvento(r.eventoID,r.categoriaID,r.evento,r.descripcion);
-      this.notificacion("Evento actualizado con exito");
-      this.updateData()
+    dialog.afterClosed().subscribe(dato=>{
+      if(!dato){return}     
+
+      var visible = (data.VISIBLE == true)?1:0;
+      
+      console.log(dato)
+      this.service.editEvento(dato.EVENTOID,dato.CATEGORIAID,dato.EVENTO,dato.DESCRIPCION,visible).subscribe(res=>{
+        console.log(res)
+        this.notificacion("Evento actualizado con exito");      
+        //this.updateData()        
+      });
+
+      
     })
   }
 
@@ -146,8 +153,10 @@ export class ModalEventoEditar implements OnInit {
 
   ngOnInit():void{
     this.service.getListaCategorias().subscribe(r=>{
-      this.categorias = r;
+      this.categorias = r;          
     })
+
+    
   }  
 
   onNoClick():void{

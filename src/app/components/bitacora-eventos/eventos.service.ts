@@ -50,8 +50,8 @@ export class EventosService {
 
   //------------------------------------------------------------------------------------------------------------//
   //FUNCION PARA AGREGAR UN EVENTO
-  editEvento(eventoID:number,categoriaID:number,evento:string,descripcion:string):Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/bitacora/editar/evento`,{eventoID,categoriaID,evento,descripcion})
+  editEvento(eventoID:number,categoriaID:number,evento:string,descripcion:string,visible:number):Observable<any>{    
+    return this.http.post<any>(`${this.apiUrl}/bitacora/editar/evento`,{eventoID,categoriaID,evento,descripcion,visible})
       .pipe(
         tap(),
         catchError(this.handleError<any>('Error al agregar el evento'))

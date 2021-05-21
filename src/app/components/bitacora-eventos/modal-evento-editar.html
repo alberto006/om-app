@@ -22,12 +22,18 @@
         <textarea matInput #descripcion [(ngModel)]="data.DESCRIPCION"></textarea>
     </mat-form-field>
 
+    <mat-checkbox color="primary" #visible [(ngModel)]="data.VISIBLE" >Visible</mat-checkbox>
+    <mat-divider></mat-divider>
+    <br>
+    
+
+
     <button 
         mat-raised-button 
         class="bg-ops-indigo txt-white" 
         [mat-dialog-close]="data"
     >
-        Agregar
+        Actualizar
     </button>
 
 </div>
