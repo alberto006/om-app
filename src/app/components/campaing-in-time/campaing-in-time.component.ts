@@ -8,9 +8,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
-
-
 @Component({
   selector: 'app-campaing-in-time',
   templateUrl: './campaing-in-time.component.html',
@@ -39,11 +36,7 @@ export class CampaingInTimeComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  log(crm: any): void {
-    console.log(crm);
-  }
+  }  
 
   getDate(): string {
     //FECHA ACTUAL
@@ -66,8 +59,7 @@ export class CampaingInTimeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCrms()
-
+    this.getCrms();    
     this.dataSource = new MatTableDataSource(this.data);
   }
 
@@ -116,7 +108,6 @@ export class CampaingInTimeComponent implements OnInit {
     this.intervaloService.getIntervaloData(crm, ncrm, date).subscribe(res => {
       this.data = res;
       this.dataSource.data = this.data;
-
     })
   }
 
@@ -147,6 +138,7 @@ export class CampaingInTimeComponent implements OnInit {
   getCrms() {
     this.intervaloService.getListaCrms().subscribe(res => {
       this.listaCrms = res;
+      
     })
   }
 

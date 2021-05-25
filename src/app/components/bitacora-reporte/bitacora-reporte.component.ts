@@ -58,6 +58,7 @@ export class BitacoraReporteComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.DataResumen1 = r;
+      console.log(r)
 
       this.getTotalMes1();
       this.getTotalMes2();
