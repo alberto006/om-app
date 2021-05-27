@@ -47,6 +47,17 @@ export class UsuarioService {
   //------------------------------------------------------------------------------------------------------------//
 
   //------------------------------------------------------------------------------------------------------------//
+  updateUsuario(usuarioID:number,usuario:string,correo:string,activo:number,rolID:number,password:string,cambio_pass:number): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/om/usuarios/actualizar`,{usuarioID,usuario,correo,activo,rolID,password,cambio_pass})
+      .pipe(
+        tap(),
+        catchError(this.handleError<any>('Error al crear el usuario'))
+      )
+  }
+
+  //------------------------------------------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------------------------------------------//
   // FUNCTION PARA MOSTRAR MENSAJES EN PANTALLA AL USUARIO
   notificacion(mensaje:string){
     this._snackBar.open(mensaje, 'Cerrar',{

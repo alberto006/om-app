@@ -5,8 +5,6 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { createOfflineCompileUrlResolver, ThrowStmt } from '@angular/compiler';
-
 
 interface usuarios{
   USUARIOID:number,
@@ -95,7 +93,7 @@ export class UsuariosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(datos=>{
       if(!datos){return;}
-      console.log(datos)
+      this.notificacion("Usuario actualizado");
     })
   }
 
@@ -137,10 +135,18 @@ export class ModalCrearUsuario implements OnInit{
   }
 
   guardar(data:any){           
-    if(data.rolID=="" || data.rolID == undefined){ this.notificacion("Debe seleccionar un rol de usuario","warning");return; }   
-    if(data.usuario=="" || data.usuario == undefined){ this.notificacion("Debe ingresar un nombre de usuario","warning"); return;}   
-    if(data.password=="" || data.password == undefined){ this.notificacion("Debe ingresar la clave" ,"warning"); return;}
-    if(data.correo=="" || data.correo == undefined){ this.notificacion("Debe ingresar un correo electronico","warning");return;}
+    if(data.rolID=="" || data.rolID == undefined){ 
+      this.notificacion("Debe seleccionar un rol de usuario","warning");return; 
+    }   
+    if(data.usuario=="" || data.usuario == undefined){ 
+      this.notificacion("Debe ingresar un nombre de usuario","warning"); return;
+    }   
+    if(data.password=="" || data.password == undefined){ 
+      this.notificacion("Debe ingresar la clave" ,"warning"); return;
+    }
+    if(data.correo=="" || data.correo == undefined){ 
+      this.notificacion("Debe ingresar un correo electronico","warning");return;
+    }
 
     this.service.postUsuario(data.usuario,data.correo,data.rolID,data.password).subscribe(r=>{
       if(r.length>=1){
@@ -190,20 +196,46 @@ export class ModalEditarUsuario implements OnInit{
     private _snackBar:MatSnackBar    
   ){}
 
-  roles:any[] = [];
+  roles:any[] = []; 
+  
+  claveNueva:string="";
+  claveNuevaConfirm:string="";
+  cambiarClave:boolean = false;
+  
 
   ngOnInit():void{
-    this.getRoles();
+    this.getRoles();    
   }
 
   getRoles(){
     this.service.getRolesUsuarios().subscribe(r=>{
-      this.roles = r;
+      this.roles = r;          
     })
   }
 
   guardar(data:any){
-    console.log(data)
+    var cambio_pass:number = (this.cambiarClave == true)?1:0;
+    
+    if(this.cambiarClave == true && this.claveNueva != this.claveNuevaConfirm){
+      this.notificacion("Las claves no coinciden");
+      return;
+    }
+
+    var isActivo = (data.ACTIVO == true)?1:0;
+
+    this.service.updateUsuario(data.USUARIOID,data.USUARIO,data.CORREO,isActivo,data.ROLID,this.claveNueva,cambio_pass).subscribe(res=>{
+      this.dialogRef.close(res);
+    })   
+
+  }
+
+  notificacion(mensaje:string,tipo:string=""){
+    this._snackBar.open(mensaje,"Cerrar",{
+      duration:10000,
+      horizontalPosition:'center',
+      verticalPosition:'top',
+      panelClass: ['alert',`alert-${tipo}`]
+    })
   }
 
   onNoClick():void{
