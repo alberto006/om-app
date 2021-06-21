@@ -1,16 +1,16 @@
 <div class="container">
-    <mat-card class="mat-elevation-z8 txt-ops-indigo">
+    <mat-card class="mat-elevation-z8">
         <h2 class="txt-ops-yellow">Eventos y categorias de incidentes</h2>
         <mat-accordion class="txt-white">
-            <mat-expansion-panel *ngFor="let cat of Categorias" class="bg-ops-indigo txt-white">
-                <mat-expansion-panel-header class="bg-ops-indigo txt-white">
+            <mat-expansion-panel *ngFor="let cat of Categorias" class="">
+                <mat-expansion-panel-header class="">
     
-                    <mat-panel-title class="bg-ops-indigo txt-white">
+                    <mat-panel-title class="">
                         <b>{{cat.CATEGORIA}}</b>
                     </mat-panel-title>
     
-                    <mat-panel-description class="bg-ops-indigo txt-white">
-                        <span class="txt-white" *ngIf="!Removable">{{cat.DESCRIPCION}}</span>
+                    <mat-panel-description class="">
+                        <span class="txt-ops-indigo" *ngIf="!Removable">{{cat.DESCRIPCION}}</span>
                     </mat-panel-description>
     
                 </mat-expansion-panel-header>
@@ -20,10 +20,10 @@
     
                     <table class="table w-100">
                         <tr *ngFor="let ev of Eventos">
-                            <td class="text-left txt-white" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
+                            <td class="text-left" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
                                 <span><b>{{ev.EVENTO}}</b> </span>
                             </td>
-                            <td class="txt-white" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID && !Removable">
+                            <td class="" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID && !Removable">
                                 {{ev.DESCRIPCION}}
                             </td>
                             <td class="text-right" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">

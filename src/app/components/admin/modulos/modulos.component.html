@@ -1,1 +1,43 @@
-<p>modulos works!</p>
+<div class="container">
+    <mat-card class="mat-elevation-z8 txt-ops-indigo">
+        <h2 class="txt-ops-yellow">Modulos del sistema</h2>
+        <mat-accordion class="txt-white">
+            <mat-expansion-panel *ngFor="let mod of modulos" class="">
+                <mat-expansion-panel-header class="">
+    
+                    <mat-panel-title class="">
+                        <b>{{mod.MODULO}}</b>
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- EVENTOS POR CATEGORIA -->            
+    
+                <div class="table-responsive">
+    
+                    <table class="table w-100">
+                        <tr *ngFor="let com of componentes">
+                            <td class="text-left" *ngIf="com.MODULOID == mod.MODULOID">
+                                <span><b>{{com.COMPONENTE}}</b> </span>
+                            </td>                            
+                            <td class="text-right" *ngIf="com.MODULOID == mod.MODULOID">
+                                <button 
+                                    (click)="openModalEditar(com)" 
+                                    mat-raised-button                                     
+                                    class="txt-white bg-ops-indigo"
+                                >
+                                    <mat-icon>group_add</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+    
+                </div>
+                <!-- EVENTOS POR CATEGORIA -->
+            </mat-expansion-panel>
+        </mat-accordion>
+    
+        
+        
+    </mat-card>
+    
+</div>

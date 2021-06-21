@@ -1,0 +1,59 @@
+<h2>Roles con permiso al modulo</h2>
+
+<div class="row " >
+    
+    <div class="col-md-6 p-2">
+        <mat-card class="mat-elevation-z8">
+            <mat-card-header>
+                <mat-card-title>
+                    Roles Asignados
+                </mat-card-title>                
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let p of permisos">
+                        <button 
+                            mat-icon-button 
+                            color="warn" 
+                            class="pull-right"
+                            (click)="removerPermiso(data.COMPONENTEID,p.ROLID)"
+                        >
+                            <mat-icon>remove_circle_outline</mat-icon>
+                        </button>
+                            {{p.ROL}}                        
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            
+        </mat-card>
+        
+    </div>
+    <div class="col-md-6 p-2">
+        <mat-card class="mat-elevation-z8">
+            <mat-card-header>
+                <mat-card-title>
+                    Roles sin asignar
+                </mat-card-title>                
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let r of rolesDisponibles">
+                        <button 
+                            mat-icon-button  
+                            class="text-success pull-right"
+                            (click)="asignarPermiso(data.COMPONENTEID,r.ROLID)"
+                        >
+                            <mat-icon>add_circle_outline</mat-icon>
+                        </button>
+                            {{r.ROL}}                        
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            
+        </mat-card>
+    </div>
+</div>
+
+<hr>
+
+<button mat-raised-button color="warn" (click)="onNoClick()">Cerrar</button>

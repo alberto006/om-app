@@ -61,12 +61,12 @@ export class UsuariosComponent implements OnInit {
   }
 
   actualizarTablaUsuarios():void{
-    console.log(this.usuarios)
+    
     this.getUsuarios();
     this.dataSource = new MatTableDataSource(this.usuarios);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    console.log(this.usuarios)
+    
   }
 
   openModalCrear(){
@@ -94,6 +94,21 @@ export class UsuariosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(datos=>{
       if(!datos){return;}
       this.notificacion("Usuario actualizado");
+      this.usuarios = datos;
+      this.actualizarTablaUsuarios()
+    })
+  }
+
+  openModalCrearRol(){
+    const dialogRef = this.dialog.open(ModalCrearRol,{
+      width:'70%',
+      data:[],
+      disableClose:true
+    })
+
+    dialogRef.afterClosed().subscribe(r=>{
+      if(!r){return;}
+
     })
   }
 
@@ -222,7 +237,7 @@ export class ModalEditarUsuario implements OnInit{
     }
 
     var isActivo = (data.ACTIVO == true)?1:0;
-
+    
     this.service.updateUsuario(data.USUARIOID,data.USUARIO,data.CORREO,isActivo,data.ROLID,this.claveNueva,cambio_pass).subscribe(res=>{
       this.dialogRef.close(res);
     })   
@@ -240,6 +255,71 @@ export class ModalEditarUsuario implements OnInit{
 
   onNoClick():void{
     this.dialogRef.close()
+  }
+
+}
+//------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------//
+//COMPONENTE PARA CREAR UN NUEVO ROL
+@Component({
+  selector:'modal-crear-rol',
+  templateUrl:'./modal-crear-rol.html',
+  styleUrls:['./usuarios.component.css']
+})
+export class ModalCrearRol implements OnInit{
+
+  constructor(
+    public dialogRef:MatDialogRef<ModalCrearRol>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private service:UsuarioService,
+    private _snackBar:MatSnackBar
+  ){}
+
+  Roles:any[] = [];
+  NuevoRol:string = ""
+
+  ngOnInit():void{ 
+    this.getRoles();
+  }
+
+  CrearRol(){
+    
+    if(this.NuevoRol == ""){
+      this.notificacion("Debe ingresar el nombre del Rol")
+      return;
+    }
+
+    if(this.Roles.filter(item => item.ROL == this.NuevoRol.toUpperCase()).length > 0){
+      this.notificacion("El rol ya existe no se puede ingresar un duplicado")
+      return;
+    }
+
+    this.NuevoRol = this.NuevoRol.trim();
+    this.service.postRol(this.NuevoRol).subscribe(r=>{
+      this.notificacion('Rol creado con exito!')
+      this.NuevoRol = "";
+      this.getRoles();
+    })
+  }
+
+  getRoles(){
+    this.service.getRolesUsuarios().subscribe(r=>{
+      this.Roles = r;
+      
+    })
+  }
+
+  onNoClick():void{
+    this.dialogRef.close();
+  }
+
+  notificacion(mensaje:string){
+    this._snackBar.open(mensaje,'Cerrar',{
+      duration:5000,
+      verticalPosition:'top',
+      horizontalPosition:'center'
+    })
   }
 
 }

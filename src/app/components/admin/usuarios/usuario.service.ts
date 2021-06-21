@@ -58,6 +58,17 @@ export class UsuarioService {
   //------------------------------------------------------------------------------------------------------------//
 
   //------------------------------------------------------------------------------------------------------------//
+  postRol(rol:string):Observable<any>{
+    rol = rol.toUpperCase()
+    return this.http.post<any>(`${this.apiUrl}/om/roles/agregar`,{rol})
+      .pipe(
+        tap(),
+        catchError(this.handleError<any>('Error al agregar el nuevo rol de usuarios'))
+      )
+  }
+  //------------------------------------------------------------------------------------------------------------//
+
+  //------------------------------------------------------------------------------------------------------------//
   // FUNCTION PARA MOSTRAR MENSAJES EN PANTALLA AL USUARIO
   notificacion(mensaje:string){
     this._snackBar.open(mensaje, 'Cerrar',{

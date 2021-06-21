@@ -61,8 +61,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { BitacoraReporteComponent } from './components/bitacora-reporte/bitacora-reporte.component';
 import { BitacoraEventosComponent, ModalEventoAgregar,ModalEventoEditar } from './components/bitacora-eventos/bitacora-eventos.component';
 import { InicioComponent } from './components/inicio/inicio.component';
-import { UsuariosComponent, ModalCrearUsuario, ModalEditarUsuario } from './components/admin/usuarios/usuarios.component';
-import { ModulosComponent } from './components/admin/modulos/modulos.component';
+import { UsuariosComponent, ModalCrearUsuario, ModalEditarUsuario,ModalCrearRol } from './components/admin/usuarios/usuarios.component';
+import { ModulosComponent,ModalPermisosComponente } from './components/admin/modulos/modulos.component';
 import { ComponentesComponent } from './components/admin/componentes/componentes.component';
 import { DashboardsComponent } from './public/dashboards/dashboards.component';
 
@@ -76,8 +76,8 @@ import { DashboardsComponent } from './public/dashboards/dashboards.component';
     BitacoraReporteComponent,
     BitacoraEventosComponent,ModalEventoAgregar,ModalEventoEditar,
     InicioComponent,
-    UsuariosComponent,ModalCrearUsuario,ModalEditarUsuario,
-    ModulosComponent,
+    UsuariosComponent,ModalCrearUsuario,ModalEditarUsuario,ModalCrearRol,
+    ModulosComponent,ModalPermisosComponente,
     ComponentesComponent,
     DashboardsComponent
   ],

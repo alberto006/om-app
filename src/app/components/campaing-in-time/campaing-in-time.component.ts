@@ -22,6 +22,8 @@ export class CampaingInTimeComponent implements OnInit {
   fecha: string = "";
   crmSelected: number = 0;
 
+    
+
   //variables para la tabla
   displayColumns: string[] = ['INTERVALO', 'AGENTES', 'INTENTOS', 'CONTACTOS', 'RPC','BITACORA'];
   dataSource!: MatTableDataSource<any>;
@@ -251,6 +253,20 @@ export class ModalBitacoraCrm implements OnInit{
     private _snackBar:MatSnackBar
   ){}
 
+  intervalos:string[] = [
+    "08:00","08:30",
+    "09:00","09:30",
+    "10:00","10:30",
+    "11:00","11:30",
+    "12:00","12:30",
+    "13:00","13:30",
+    "14:00","14:30",
+    "15:00","15:30",
+    "16:00","16:30",
+    "17:00","17:30",
+    "18:00","18:30"
+  ];
+
   ngOnInit():void{
     this.eventosCrm();
   }
@@ -325,6 +341,20 @@ export class ModalBitacoraAgente implements OnInit{
     private _snackBar:MatSnackBar
   ){}
 
+  intervalos:string[] = [
+    "08:00","08:30",
+    "09:00","09:30",
+    "10:00","10:30",
+    "11:00","11:30",
+    "12:00","12:30",
+    "13:00","13:30",
+    "14:00","14:30",
+    "15:00","15:30",
+    "16:00","16:30",
+    "17:00","17:30",
+    "18:00","18:30"
+  ];
+
   ngOnInit():void{
     this.eventosAgente();
     this.intervalo = this.getIntervalo();    
@@ -334,13 +364,11 @@ export class ModalBitacoraAgente implements OnInit{
   eventoSeleccionado:string="";
   comentario:string="";
   usuarioBitacora:string = sessionStorage.getItem('usuario')||"";
-
-  intervalo:string ="";
+  intervalo:string ="";  
 
   getIntervalo():string{
     var fecha = new Date()
-    var hora = fecha.getHours()   
-
+    var hora = fecha.getHours()  
     var minuto = fecha.getMinutes()
     var intervalo:string = ""
     if(minuto<30){
@@ -358,8 +386,7 @@ export class ModalBitacoraAgente implements OnInit{
         
       }
     })
-    console.log(this.eventoSeleccionado)
-    
+    console.log(this.eventoSeleccionado)    
   }
 
   comentarioSet(comment:string):void{
@@ -368,8 +395,7 @@ export class ModalBitacoraAgente implements OnInit{
 
   eventosAgente():void{
     this.intervalosService.getEventosAgente().subscribe(r=>{
-      this.listaEventos = r;
-      
+      this.listaEventos = r;      
     })
   }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ModulosComponent } from './components/admin/modulos/modulos.component';
 import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from './components/auth/auth.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'bitacora-reporte',component:BitacoraReporteComponent,canActivate:[AuthGuard]},
   {path:'bitacora-eventos',component:BitacoraEventosComponent,canActivate:[AuthGuard]},
   {path:'usuarios',component:UsuariosComponent,canActivate:[AuthGuard]},
+  {path:'modulos',component:ModulosComponent,canActivate:[AuthGuard]},
   {path:'**',component:PageNotFoundComponent}
 ];
 

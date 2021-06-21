@@ -10,8 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class BitacoraReporteService {
 
-  constructor(private _snackBar:MatSnackBar, private http:HttpClient) { 
-    console.log(environment.production)
+  constructor(private _snackBar:MatSnackBar, private http:HttpClient) {    
 
   }
 
