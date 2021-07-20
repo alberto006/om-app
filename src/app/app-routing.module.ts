@@ -7,6 +7,7 @@ import { AuthGuard } from './components/auth/auth.guard';
 import { BitacoraEventosComponent } from './components/bitacora-eventos/bitacora-eventos.component';
 import { BitacoraReporteComponent } from './components/bitacora-reporte/bitacora-reporte.component';
 import { CampaingInTimeComponent } from './components/campaing-in-time/campaing-in-time.component';
+import { HistorialComponent } from './components/historial/historial.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DashboardsComponent } from './public/dashboards/dashboards.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'bitacora-eventos',component:BitacoraEventosComponent,canActivate:[AuthGuard]},
   {path:'usuarios',component:UsuariosComponent,canActivate:[AuthGuard]},
   {path:'modulos',component:ModulosComponent,canActivate:[AuthGuard]},
+  {path:'historial/:cuenta/:crm',component:HistorialComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 

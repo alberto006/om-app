@@ -133,5 +133,4 @@ export class BitacoraReporteComponent implements OnInit {
   }
 
 
-
   }

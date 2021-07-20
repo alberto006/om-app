@@ -65,6 +65,8 @@ import { UsuariosComponent, ModalCrearUsuario, ModalEditarUsuario,ModalCrearRol 
 import { ModulosComponent,ModalPermisosComponente } from './components/admin/modulos/modulos.component';
 import { ComponentesComponent } from './components/admin/componentes/componentes.component';
 import { DashboardsComponent } from './public/dashboards/dashboards.component';
+import { HistorialComponent } from './components/historial/historial.component';
+
 
 
 @NgModule({
@@ -79,7 +81,8 @@ import { DashboardsComponent } from './public/dashboards/dashboards.component';
     UsuariosComponent,ModalCrearUsuario,ModalEditarUsuario,ModalCrearRol,
     ModulosComponent,ModalPermisosComponente,
     ComponentesComponent,
-    DashboardsComponent
+    DashboardsComponent,
+    HistorialComponent,
   ],
   imports: [
     BrowserModule,
