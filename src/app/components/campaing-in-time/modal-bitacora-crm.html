@@ -37,8 +37,13 @@
 
     <div class="row">
         <div class="col-md-3">
-            <H4>Intervalo</H4>
-            <span class="badge badge-default P-4" style="font-size:1.2em">{{data.INTERVALO}}</span>
+
+            <mat-form-field>
+                <mat-label>Intervalo</mat-label>
+                <mat-select [(ngModel)]="data.INTERVALO">
+                    <mat-option *ngFor="let i of intervalos" [value]="i">{{i}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <div class="col-md-3">
@@ -61,10 +66,5 @@
             </button>
         </div>
     </div>
-
-    
-
-    
-
     
 </div>

@@ -59,8 +59,25 @@ import { CampaingInTimeComponent, ModalListaAgentes, ModalBitacoraCrm, ModalBita
 import { AuthComponent } from './components/auth/auth.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BitacoraReporteComponent } from './components/bitacora-reporte/bitacora-reporte.component';
-import { BitacoraEventosComponent } from './components/bitacora-eventos/bitacora-eventos.component';
+import { BitacoraEventosComponent, ModalEventoAgregar,ModalEventoEditar } from './components/bitacora-eventos/bitacora-eventos.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+<<<<<<< HEAD
+import { UsuariosComponent, ModalCrearUsuario, ModalEditarUsuario,ModalCrearRol } from './components/admin/usuarios/usuarios.component';
+import { ModulosComponent,ModalPermisosComponente } from './components/admin/modulos/modulos.component';
+=======
+import { UsuariosComponent, ModalCrearUsuario } from './components/admin/usuarios/usuarios.component';
+import { ModulosComponent } from './components/admin/modulos/modulos.component';
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
+import { ComponentesComponent } from './components/admin/componentes/componentes.component';
+import { DashboardsComponent } from './public/dashboards/dashboards.component';
+import { HistorialComponent } from './components/historial/historial.component';
+import { PortadaComponent } from './components/portada/portada.component';
+import { CandidatosComponent, ModalCandidatoPerfil } from './components/rh/candidatos/candidatos.component';
+import { ModalPerfilCandidato, ReclutamientoComponent } from './components/rh/reclutamiento/reclutamiento.component';
+import { ForbiddenComponent } from './components/public/forbidden/forbidden.component';
+
+
+
 
 
 @NgModule({
@@ -70,8 +87,20 @@ import { InicioComponent } from './components/inicio/inicio.component';
     AuthComponent,
     PageNotFoundComponent,
     BitacoraReporteComponent,
-    BitacoraEventosComponent,
-    InicioComponent
+    BitacoraEventosComponent,ModalEventoAgregar,ModalEventoEditar,
+    InicioComponent,
+<<<<<<< HEAD
+    UsuariosComponent,ModalCrearUsuario,ModalEditarUsuario,ModalCrearRol,
+    ModulosComponent,ModalPermisosComponente,
+=======
+    UsuariosComponent,ModalCrearUsuario,
+    ModulosComponent,
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
+    ComponentesComponent,
+    DashboardsComponent,
+    HistorialComponent,
+    PortadaComponent,
+    CandidatosComponent,ModalCandidatoPerfil, ReclutamientoComponent, ForbiddenComponent, ModalPerfilCandidato    
   ],
   imports: [
     BrowserModule,
@@ -80,8 +109,6 @@ import { InicioComponent } from './components/inicio/inicio.component';
     FormsModule,
     ReactiveFormsModule,
     jqxChartModule,
-    
-    
 
     //Material Components
     MatCheckboxModule,

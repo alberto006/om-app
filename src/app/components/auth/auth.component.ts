@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -32,7 +33,6 @@ export class AuthComponent implements OnInit {
       this.router.navigate(['./inicio'])
     }
   }
-
   
 
   login(usuario:string,password:string):void{
@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit {
      this.authService.login(usuario,password).subscribe(res=>{
       if(res[0].STATUS == 1){
         sessionStorage.setItem('isLoggedIn','true');
-        sessionStorage.setItem('token','pruebatoken');
+        //sessionStorage.setItem('token','pruebatoken');
         sessionStorage.setItem('usuario',usuario);
         
         
@@ -50,6 +50,9 @@ export class AuthComponent implements OnInit {
 
         this.authService.getPermisos(usuario).subscribe(r=>{
           this.permisos = r;
+          
+          sessionStorage.setItem('token',this.authService.encrypt(this.permisos));
+
           sessionStorage.setItem('permisos',JSON.stringify(this.permisos))
           window.location.href="./"
         })

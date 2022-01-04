@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Perfil Candidato</mat-card-title>
+    </mat-card-header>
+
+    <div *ngIf="candidatoElements.length > 0">
+        <mat-card-content>
+
+
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Dato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of candidatoElements[0] | keyvalue">
+                        <td>{{item.key}}</td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </mat-card-content>
+    </div>
+
+    <mat-card-actions align="end">
+        <button mat-raised-button color="warn" (click)="onNoClick()">Cerrar</button>
+        <button mat-raised-button color="primary" (click)="download()">Descardar CV</button>
+    </mat-card-actions>
+</mat-card>

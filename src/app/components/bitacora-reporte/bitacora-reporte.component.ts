@@ -57,7 +57,12 @@ export class BitacoraReporteComponent implements OnInit {
       this.dataSource = new MatTableDataSource(r)
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+<<<<<<< HEAD
+      this.DataResumen1 = r;      
+=======
       this.DataResumen1 = r;
+      console.log(r)
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
 
       this.getTotalMes1();
       this.getTotalMes2();
@@ -131,7 +136,6 @@ export class BitacoraReporteComponent implements OnInit {
       verticalPosition: 'top'
     })
   }
-
 
 
   }

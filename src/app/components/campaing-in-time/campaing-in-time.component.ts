@@ -8,9 +8,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
-
-
 @Component({
   selector: 'app-campaing-in-time',
   templateUrl: './campaing-in-time.component.html',
@@ -24,6 +21,8 @@ export class CampaingInTimeComponent implements OnInit {
   listaCrms: any = [];
   fecha: string = "";
   crmSelected: number = 0;
+
+    
 
   //variables para la tabla
   displayColumns: string[] = ['INTERVALO', 'AGENTES', 'INTENTOS', 'CONTACTOS', 'RPC','BITACORA'];
@@ -39,11 +38,7 @@ export class CampaingInTimeComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  log(crm: any): void {
-    console.log(crm);
-  }
+  }  
 
   getDate(): string {
     //FECHA ACTUAL
@@ -66,8 +61,7 @@ export class CampaingInTimeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCrms()
-
+    this.getCrms();    
     this.dataSource = new MatTableDataSource(this.data);
   }
 
@@ -116,7 +110,6 @@ export class CampaingInTimeComponent implements OnInit {
     this.intervaloService.getIntervaloData(crm, ncrm, date).subscribe(res => {
       this.data = res;
       this.dataSource.data = this.data;
-
     })
   }
 
@@ -147,6 +140,7 @@ export class CampaingInTimeComponent implements OnInit {
   getCrms() {
     this.intervaloService.getListaCrms().subscribe(res => {
       this.listaCrms = res;
+      
     })
   }
 
@@ -259,6 +253,20 @@ export class ModalBitacoraCrm implements OnInit{
     private _snackBar:MatSnackBar
   ){}
 
+  intervalos:string[] = [
+    "08:00","08:30",
+    "09:00","09:30",
+    "10:00","10:30",
+    "11:00","11:30",
+    "12:00","12:30",
+    "13:00","13:30",
+    "14:00","14:30",
+    "15:00","15:30",
+    "16:00","16:30",
+    "17:00","17:30",
+    "18:00","18:30"
+  ];
+
   ngOnInit():void{
     this.eventosCrm();
   }
@@ -333,6 +341,20 @@ export class ModalBitacoraAgente implements OnInit{
     private _snackBar:MatSnackBar
   ){}
 
+  intervalos:string[] = [
+    "08:00","08:30",
+    "09:00","09:30",
+    "10:00","10:30",
+    "11:00","11:30",
+    "12:00","12:30",
+    "13:00","13:30",
+    "14:00","14:30",
+    "15:00","15:30",
+    "16:00","16:30",
+    "17:00","17:30",
+    "18:00","18:30"
+  ];
+
   ngOnInit():void{
     this.eventosAgente();
     this.intervalo = this.getIntervalo();    
@@ -342,13 +364,11 @@ export class ModalBitacoraAgente implements OnInit{
   eventoSeleccionado:string="";
   comentario:string="";
   usuarioBitacora:string = sessionStorage.getItem('usuario')||"";
-
-  intervalo:string ="";
+  intervalo:string ="";  
 
   getIntervalo():string{
     var fecha = new Date()
-    var hora = fecha.getHours()   
-
+    var hora = fecha.getHours()  
     var minuto = fecha.getMinutes()
     var intervalo:string = ""
     if(minuto<30){
@@ -366,8 +386,7 @@ export class ModalBitacoraAgente implements OnInit{
         
       }
     })
-    console.log(this.eventoSeleccionado)
-    
+    console.log(this.eventoSeleccionado)    
   }
 
   comentarioSet(comment:string):void{
@@ -376,8 +395,7 @@ export class ModalBitacoraAgente implements OnInit{
 
   eventosAgente():void{
     this.intervalosService.getEventosAgente().subscribe(r=>{
-      this.listaEventos = r;
-      
+      this.listaEventos = r;      
     })
   }
 
