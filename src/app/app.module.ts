@@ -61,8 +61,13 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { BitacoraReporteComponent } from './components/bitacora-reporte/bitacora-reporte.component';
 import { BitacoraEventosComponent, ModalEventoAgregar,ModalEventoEditar } from './components/bitacora-eventos/bitacora-eventos.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+<<<<<<< HEAD
 import { UsuariosComponent, ModalCrearUsuario, ModalEditarUsuario,ModalCrearRol } from './components/admin/usuarios/usuarios.component';
 import { ModulosComponent,ModalPermisosComponente } from './components/admin/modulos/modulos.component';
+=======
+import { UsuariosComponent, ModalCrearUsuario } from './components/admin/usuarios/usuarios.component';
+import { ModulosComponent } from './components/admin/modulos/modulos.component';
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
 import { ComponentesComponent } from './components/admin/componentes/componentes.component';
 import { DashboardsComponent } from './public/dashboards/dashboards.component';
 import { HistorialComponent } from './components/historial/historial.component';
@@ -84,8 +89,13 @@ import { ForbiddenComponent } from './components/public/forbidden/forbidden.comp
     BitacoraReporteComponent,
     BitacoraEventosComponent,ModalEventoAgregar,ModalEventoEditar,
     InicioComponent,
+<<<<<<< HEAD
     UsuariosComponent,ModalCrearUsuario,ModalEditarUsuario,ModalCrearRol,
     ModulosComponent,ModalPermisosComponente,
+=======
+    UsuariosComponent,ModalCrearUsuario,
+    ModulosComponent,
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
     ComponentesComponent,
     DashboardsComponent,
     HistorialComponent,

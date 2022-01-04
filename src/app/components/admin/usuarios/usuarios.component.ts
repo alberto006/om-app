@@ -50,7 +50,12 @@ export class UsuariosComponent implements OnInit {
       this.dataSource = new MatTableDataSource(r);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
+<<<<<<< HEAD
       this.usuarios = r;      
+=======
+      this.usuarios = r;
+      console.log(r)
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
     })    
   }  
 
@@ -60,6 +65,7 @@ export class UsuariosComponent implements OnInit {
     })
   }
 
+<<<<<<< HEAD
   actualizarTablaUsuarios():void{
     
     this.getUsuarios();
@@ -89,10 +95,17 @@ export class UsuariosComponent implements OnInit {
       width:'70%',
       data:data,
       disableClose:true
+=======
+  openModalCrear(){
+    const dialogRef = this.dialog.open(ModalCrearUsuario,{
+      width:'70%',
+      data:[]
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
     });
 
     dialogRef.afterClosed().subscribe(datos=>{
       if(!datos){return;}
+<<<<<<< HEAD
       this.notificacion("Usuario actualizado");
       this.usuarios = datos;
       this.actualizarTablaUsuarios()
@@ -119,6 +132,11 @@ export class UsuariosComponent implements OnInit {
       verticalPosition:'top',
       panelClass: ['alert',`alert-${tipo}`]
     })
+=======
+            
+    })
+
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
   }
 
   editarUsuario(data:any):void{
@@ -139,8 +157,12 @@ export class ModalCrearUsuario implements OnInit{
     public dialogRef:MatDialogRef<ModalCrearUsuario>,
     private service:UsuarioService,
     @Inject(MAT_DIALOG_DATA) public data:any,
+<<<<<<< HEAD
     private dialog:MatDialog,
     private _snackBar:MatSnackBar
+=======
+    private dialog:MatDialog
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
   ){}  
 
   roles:any[] = [];
@@ -149,6 +171,7 @@ export class ModalCrearUsuario implements OnInit{
     this.getRoles();
   }
 
+<<<<<<< HEAD
   guardar(data:any){           
     if(data.rolID=="" || data.rolID == undefined){ 
       this.notificacion("Debe seleccionar un rol de usuario","warning");return; 
@@ -174,12 +197,15 @@ export class ModalCrearUsuario implements OnInit{
     
   }
 
+=======
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
   getRoles(){
     this.service.getRolesUsuarios().subscribe(r=>{
       this.roles = r;
     })
   }
 
+<<<<<<< HEAD
   notificacion(mensaje:string,tipo:string=""){
     this._snackBar.open(mensaje,"Cerrar",{
       duration:10000,
@@ -189,11 +215,14 @@ export class ModalCrearUsuario implements OnInit{
     })
   }
 
+=======
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
   onNoClick():void{
     this.dialogRef.close();
   }
 
 }
+<<<<<<< HEAD
 //------------------------------------------------------------------------------------------------------------//
 
 //------------------------------------------------------------------------------------------------------------//
@@ -323,4 +352,6 @@ export class ModalCrearRol implements OnInit{
   }
 
 }
+=======
+>>>>>>> 1054061fe25cde8f3c36c20938f3b319fb5987e6
 //------------------------------------------------------------------------------------------------------------//
