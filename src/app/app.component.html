@@ -37,7 +37,11 @@
       <span class="toolbar-spacer"></span>
 
       <div *ngIf="usuarioSesion() != ''">
-        <button mat-stroked-button color="accent" (click)="CerrarSesion()">Salir ({{usuarioSesion()}})</button>
+        <button mat-stroked-button color="accent" (click)="CerrarSesion()">Salir ({{usuarioSesion()}})</button>        
+      </div>
+
+      <div *ngIf="usuarioSesion() == '' ">
+        <button mat-raised-button style="color:white;background-color: #666666;"  routerLink="/login">Entrar</button>
       </div>
 
     </mat-toolbar>

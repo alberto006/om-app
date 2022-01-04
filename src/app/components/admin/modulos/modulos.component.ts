@@ -18,13 +18,14 @@ export class ModulosComponent implements OnInit {
   componentes:any[]=[];
   Removable=false;
 
-  constructor(private service:ModulosService, private _snackBac:MatSnackBar, private dialog:MatDialog) {     
-  }   
+  // tslint:disable-next-line:variable-name
+  constructor(private service: ModulosService, private _snackBac: MatSnackBar, private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.service.getModulos().subscribe(r=>{
       this.modulos = r
-    })    
+    })
 
     this.service.geComponents().subscribe(r=>{
       this.componentes = r
@@ -34,7 +35,7 @@ export class ModulosComponent implements OnInit {
   getModulos(){
     this.service.getModulos().subscribe(r=>{
       this.modulos = r
-    })    
+    })
   }
 
   getComponents(){
@@ -73,7 +74,7 @@ export class ModulosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(r=>{
-      
+
     })
 
   }
@@ -89,7 +90,7 @@ export class ModulosComponent implements OnInit {
   styleUrls:['./modulos.component.css']
 })
 export class ModalPermisosComponente implements OnInit{
-  
+
   constructor(
     private dialogRef:MatDialogRef<ModalPermisosComponente>,
     @Inject(MAT_DIALOG_DATA) public data:any,
@@ -106,7 +107,7 @@ export class ModalPermisosComponente implements OnInit{
     console.log(this.data)
 
     this.service.getPermisosComponente(this.data.COMPONENTEID).subscribe(r=>{
-      this.permisos = r      
+      this.permisos = r
     })
 
     this.service.getRoles().subscribe(r=>{
@@ -115,9 +116,9 @@ export class ModalPermisosComponente implements OnInit{
         var temp = this.permisos.filter(permiso => permiso.ROL == rol.ROL)
         if(temp.length<1){
           this.rolesDisponibles.push(rol);
-        }        
+        }
       })
-      
+
     })
 
   }
@@ -144,7 +145,7 @@ export class ModalPermisosComponente implements OnInit{
         var temp = this.permisos.filter(permiso => permiso.ROL == rol.ROL)
         if(temp.length<1){
           this.rolesDisponibles.push(rol);
-        }        
+        }
       })
     })
   }

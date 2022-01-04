@@ -1,0 +1,103 @@
+<div *ngIf="!loaded">
+    <mat-spinner></mat-spinner>
+</div>
+
+
+<div *ngIf="loaded">
+    <mat-card>
+        <mat-card-header>
+            <h1>{{perfil.primer_nombre}} {{perfil.segundo_nombre}} {{perfil.primer_apellido}} {{perfil.segundo_apellido}}</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="4" rowHeight="2:1" >
+                
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Identidad</mat-grid-tile-header>
+                    {{perfil.identidad}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Fecha Nacimiento - Edad</mat-grid-tile-header>
+                    {{perfil.fecha_nacimiendo | date:'dd/MM/YYYY'}} ({{edad}} años)
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Telefono</mat-grid-tile-header>
+                    {{perfil.telefono}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Correo</mat-grid-tile-header>
+                    {{perfil.correo}}
+                </mat-grid-tile>
+
+                <mat-grid-tile colspan="4">
+                    <mat-grid-tile-header [style.background]="'#12293F'">Direccion</mat-grid-tile-header>
+                    {{perfil.direccion_residencia}}
+                </mat-grid-tile>
+
+
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Genero</mat-grid-tile-header>
+                    {{perfil.genero}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Reside en Tegucigalpa</mat-grid-tile-header>
+                    {{perfil.reside_honduras}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Posee transporte</mat-grid-tile-header>
+                    {{perfil.posee_transporte}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Profesion</mat-grid-tile-header>
+                    {{perfil.area_profesion}}
+                </mat-grid-tile>
+
+
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Disponibilidad inmediata</mat-grid-tile-header>
+                    {{perfil.disponibilidad}}
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-grid-tile-header [style.background]="'#12293F'">Posee experiencia</mat-grid-tile-header>
+                    <ng-container *ngIf="perfil.posee_experiencia == 'true'; else no_posee">Si</ng-container>
+                    <ng-template #no_posee>No</ng-template>
+
+                </mat-grid-tile>
+                <mat-grid-tile *ngIf="perfil.posee_experiencia == 'true'">
+                    <mat-grid-tile-header [style.background]="'#12293F'">Ultima Empresa</mat-grid-tile-header>
+                    {{perfil.ultima_empresa}}
+                </mat-grid-tile>
+                <mat-grid-tile *ngIf="perfil.posee_experiencia == 'true'">
+                    <mat-grid-tile-header [style.background]="'#12293F'">Años de experiencia</mat-grid-tile-header>
+                    {{perfil.years_experiencia}}
+                </mat-grid-tile>
+
+                <mat-grid-tile colspan="4" *ngIf="perfil.posee_experiencia == 'true'">
+                    <mat-grid-tile-header [style.background]="'#12293F'" >Descripcion Experiencia</mat-grid-tile-header>
+                    {{perfil.descripcion_experiencia}}
+                </mat-grid-tile>
+
+                
+                <mat-grid-tile colspan="2" *ngIf="perfil.posee_experiencia == 'true'">
+                    <mat-grid-tile-header [style.background]="'#12293F'">Ares de experiencia</mat-grid-tile-header>
+                    {{perfil.areas_experiencia}}
+                </mat-grid-tile>                
+                <mat-grid-tile colspan="2">
+                    <mat-grid-tile-header [style.background]="'#12293F'">Archivo de CV</mat-grid-tile-header>
+                    {{perfil.cv_name}}
+                    <mat-grid-tile-footer [style.background]="'#FFFFFF'">
+                        <a mat-stroked-button color="primary" [href]="archivo" download="{{perfil.cv_name}}">Descargar <mat-icon>download</mat-icon></a>
+                    </mat-grid-tile-footer>
+                    
+                </mat-grid-tile>
+
+               
+            </mat-grid-list>
+        
+        </mat-card-content>
+            
+    </mat-card>
+    <hr class="mt-4">
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cerrar</button>
+</div>
+
+

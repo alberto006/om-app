@@ -66,6 +66,12 @@ import { ModulosComponent,ModalPermisosComponente } from './components/admin/mod
 import { ComponentesComponent } from './components/admin/componentes/componentes.component';
 import { DashboardsComponent } from './public/dashboards/dashboards.component';
 import { HistorialComponent } from './components/historial/historial.component';
+import { PortadaComponent } from './components/portada/portada.component';
+import { CandidatosComponent, ModalCandidatoPerfil } from './components/rh/candidatos/candidatos.component';
+import { ModalPerfilCandidato, ReclutamientoComponent } from './components/rh/reclutamiento/reclutamiento.component';
+import { ForbiddenComponent } from './components/public/forbidden/forbidden.component';
+
+
 
 
 
@@ -83,6 +89,8 @@ import { HistorialComponent } from './components/historial/historial.component';
     ComponentesComponent,
     DashboardsComponent,
     HistorialComponent,
+    PortadaComponent,
+    CandidatosComponent,ModalCandidatoPerfil, ReclutamientoComponent, ForbiddenComponent, ModalPerfilCandidato    
   ],
   imports: [
     BrowserModule,
@@ -91,8 +99,6 @@ import { HistorialComponent } from './components/historial/historial.component';
     FormsModule,
     ReactiveFormsModule,
     jqxChartModule,
-    
-    
 
     //Material Components
     MatCheckboxModule,

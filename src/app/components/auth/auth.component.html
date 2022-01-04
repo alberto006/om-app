@@ -14,7 +14,8 @@
                 <mat-label>Clave</mat-label>
                 <input matInput [formControl]="password" type="password" />
             </mat-form-field>
-            <button mat-raised-button class="bg-ops-indigo txt-ops-yellow" (click)="login(usuario.value,password.value)" >Entrar</button>
+            <button mat-raised-button class="bg-ops-indigo" style="color:white" (click)="login(usuario.value,password.value)" >Entrar</button>
+            <button mat-raised-button color="accent" class="float-right" [routerLink]="['/portada']">Volver</button>
         </mat-card>
     </div>
 </div>
