@@ -1,0 +1,119 @@
+
+<div class="container container-fluid">
+
+    <mat-card>
+
+        <h4>Datos de campaña</h4>
+        <div class="row" style="margin-top:15px;font-size:1.2em; padding-top: 20px;">
+
+            <div class="col-md-4">                
+                <mat-form-field>
+                    <mat-label>CRM</mat-label>
+                    <mat-select #crmSelect (valueChange)="selectCrm(crmSelect.value)">
+                        <mat-option *ngFor="let crm of listaCrms" [value]="crm.ID">
+                            {{crm.DESCRIPCION}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <div class="col-md-4" *ngIf="crmSelected != 0 &&listaCrms.length>=1">
+                <div style="width: 100%;text-align: left;">
+                    <P class="txt-ops-indigo">
+                        <a mat-mini-fab color="primary" (click)="export(crmSelected)">
+                            <mat-icon>file_download</mat-icon>
+                        </a>
+                        <i><b> {{listaCrms[crmSelected-1].DESCRIPCION}} </b></i>
+                    </P>
+                </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="crmSelected != 0 &&listaCrms.length>=1">
+                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                    <button type="button" mat-stroked-button color="primary" (click)="getAgentes()">
+                        <mat-icon>supervised_user_circle</mat-icon>
+                    </button>
+                    <button type="button" mat-stroked-button style="color: #5cb85c;" (click)="exportAgentes()">
+                        <mat-icon>supervised_user_circle</mat-icon>
+                        <mat-icon>file_download</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        
+        <!-- Tabla -->
+        <mat-divider></mat-divider>
+
+        <mat-form-field>
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="filtrar($event)" placeholder="" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8 table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+                <!-- Columna -->
+                <ng-container matColumnDef="INTERVALO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>INTERVALO</th>
+                    <td mat-cell *matCellDef="let row">{{row.INTERVALO}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="AGENTES">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>AGENTES</th>
+                    <td mat-cell *matCellDef="let row">{{row.AGENTES}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="INTENTOS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>INTENTOS</th>
+                    <td mat-cell *matCellDef="let row">{{row.INTENTOS}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="CONTACTOS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>CONTACTOS</th>
+                    <td mat-cell *matCellDef="let row">{{row.CONTACTOS}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="RPC">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>RPC</th>
+                    <td mat-cell *matCellDef="let row">{{row.RPC}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="BITACORA">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>BITACORA</th>
+                    <td mat-cell *matCellDef="let row">
+
+                        <button mat-raised-button class="bg-ops-indigo text-white" (click)="openBitacoraCRM(row)">
+                            Evento <mat-icon>event</mat-icon>
+                        </button>
+
+                    </td>
+                </ng-container>
+                <!-- Columna -->
+
+                <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="5">No hay informacion para mostrar "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5,10,20,50,100]" [pageSize]="20"></mat-paginator>
+        </div>
+    </mat-card>
+    <!-- Tabla -->
+
+
+
+</div>

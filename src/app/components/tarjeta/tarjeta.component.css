@@ -1,0 +1,16 @@
+
+
+.imagen{
+    width: 90%;
+    height: auto;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tarjeta{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 100%;
+}

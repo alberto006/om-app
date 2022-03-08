@@ -1,0 +1,40 @@
+<h2>Actualizar usuario</h2>
+<mat-form-field class="w-100">
+    <mat-label>Rol de usuario</mat-label>    
+    <mat-select [(ngModel)]="data.ROLID">
+        <mat-option *ngFor="let rol of roles" [value]="rol.ROLID" >
+            {{rol.ROL}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="w-100">
+    <mat-label>Usuario</mat-label>
+    <input matInput #usuario [(ngModel)]="data.USUARIO">
+</mat-form-field>
+
+
+<mat-form-field class="w-100">
+    <mat-label>Correo</mat-label>
+    <input type="email" matInput #correo [(ngModel)]="data.CORREO" >
+</mat-form-field>
+
+<mat-checkbox color="primary" [(ngModel)]="data.ACTIVO" class="mr-2">Activo</mat-checkbox>
+<mat-slide-toggle color="primary" [(ngModel)]="cambiarClave" class="ml-2">Cambiar Password</mat-slide-toggle>
+
+<div *ngIf="cambiarClave == true">
+    <mat-form-field class="w-100">
+        <label>Clave nueva</label>
+        <input type="password" matInput  [(ngModel)]="claveNueva">
+    </mat-form-field>
+    
+    <mat-form-field class="w-100">
+        <label>Confirmar clave nueva</label>
+        <input type="password" matInput  [(ngModel)]="claveNuevaConfirm">
+    </mat-form-field>
+</div>
+
+
+<hr>
+<button mat-raised-button class="bg-ops-indigo text-white mr-2" (click)="guardar(data)">Actualizar</button>
+<button mat-raised-button color="warn" class="float-right" (click)="onNoClick()">Cancelar</button>

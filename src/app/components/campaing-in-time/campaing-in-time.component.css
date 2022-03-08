@@ -1,0 +1,13 @@
+
+.button{
+    text-align: right;
+    width: 85%;
+}
+
+.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    overflow: auto;
+    pointer-events: auto;  
+  }

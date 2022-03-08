@@ -1,0 +1,23 @@
+
+
+.login-form{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group{
+    width: 100%;
+    padding:8px 8px 8px 0px;
+}
+
+
+.login-form>button{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mononoki{
+    font-family: "sans-serif";
+    
+}

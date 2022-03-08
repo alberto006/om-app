@@ -1,0 +1,57 @@
+<div class="container">
+    <mat-card class="mat-elevation-z8">
+        <h2 class="txt-ops-yellow">Eventos y categorias de incidentes</h2>
+        <mat-accordion class="txt-white">
+            <mat-expansion-panel *ngFor="let cat of Categorias" class="">
+                <mat-expansion-panel-header class="">
+    
+                    <mat-panel-title class="">
+                        <b>{{cat.CATEGORIA}}</b>
+                    </mat-panel-title>
+    
+                    <mat-panel-description class="">
+                        <span class="txt-ops-indigo" *ngIf="!Removable">{{cat.DESCRIPCION}}</span>
+                    </mat-panel-description>
+    
+                </mat-expansion-panel-header>
+                <!-- EVENTOS POR CATEGORIA -->            
+    
+                <div class="table-responsive">
+    
+                    <table class="table w-100">
+                        <tr *ngFor="let ev of Eventos">
+                            <td class="text-left" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
+                                <span><b>{{ev.EVENTO}}</b> </span>
+                            </td>
+                            <td class="" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID && !Removable">
+                                {{ev.DESCRIPCION}}
+                            </td>
+                            <td class="text-right" *ngIf="ev.CATEGORIAID == cat.CATEGORIAID">
+                                <button 
+                                    (click)="openModalEditar(ev)" 
+                                    mat-raised-button 
+                                    color="warn" 
+                                    class="txt-white"
+                                >
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+    
+                </div>
+                <!-- EVENTOS POR CATEGORIA -->
+            </mat-expansion-panel>
+        </mat-accordion>
+    
+        <hr>   
+        <button 
+            mat-raised-button 
+            class="bg-ops-yellow txt-white"
+            (click)="openModalAgregar()"
+        >
+            <mat-icon>add</mat-icon> Agregar Evento
+        </button>
+    </mat-card>
+    
+</div>

@@ -1,0 +1,33 @@
+<h2>Crear usuario</h2>
+<mat-form-field class="w-100">
+    <mat-label>Rol de usuario</mat-label>    
+    <mat-select #rolID [(ngModel)]="data.rolID">
+        <mat-option *ngFor="let rol of roles" [value]="rol.ROLID" >
+            {{rol.ROL}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="w-100">
+    <mat-label>Usuario</mat-label>
+    <input matInput #usuario [(ngModel)]="data.usuario">
+</mat-form-field>
+
+<mat-form-field class="w-100">
+    <mat-label>Password</mat-label>
+    <input 
+        type="password" 
+        #password 
+        matInput 
+        [(ngModel)]="data.password"         
+        autocomplete="new-password">
+</mat-form-field>
+
+<mat-form-field class="w-100">
+    <mat-label>Correo</mat-label>
+    <input type="email" matInput #correo [(ngModel)]="data.correo" >
+</mat-form-field>
+
+<hr>
+<button mat-raised-button class="bg-ops-indigo text-white" (click)="guardar(data)">Crear</button>
+<button mat-raised-button color="warn" class="float-right" (click)="onNoClick()">Cancelar</button>

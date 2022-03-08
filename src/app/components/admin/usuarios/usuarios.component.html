@@ -1,0 +1,90 @@
+<div class="container container-fluid">
+    <mat-card class="mat-elevation-z8">
+        <h2>Usuarios del sistema</h2>
+
+        <mat-form-field>
+            <mat-label>Filtrar</mat-label>
+            <input matInput (keyup)="filtrar($event)" #input>
+        </mat-form-field>
+
+        <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                <!-- Columna -->
+                <ng-container matColumnDef="USUARIO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+                    <td mat-cell *matCellDef="let row">{{row.USUARIO}}</td>                    
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="CORREO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+                    <td mat-cell *matCellDef="let row">{{row.CORREO}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="ROL">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Perfil</th>
+                    <td mat-cell *matCellDef="let row">{{row.ROL}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="FECHA_CREACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Creacion</th>
+                    <td mat-cell *matCellDef="let row">{{row.FECHA_CREACION}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="FECHA_MODIFICACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Actualizacion</th>
+                    <td mat-cell *matCellDef="let row">{{row.FECHA_MODIFICACION}}</td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="ACTIVO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+                    <td mat-cell *matCellDef="let row">
+                        <div *ngIf="row.ACTIVO == 1; else inactivo">
+                            <p class="text-success">Activo</p>
+                        </div>
+                        <ng-template #inactivo>
+                            <p class="text-danger">Inactivo</p>
+                        </ng-template>
+                    </td>
+                </ng-container>
+                <!-- Columna -->
+
+                <!-- Columna -->
+                <ng-container matColumnDef="OPCIONES">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>OPCIONES</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-raised-button class="bg-ops-yellow txt-ops-indigo" (click)="openModalEditar(row)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <!-- Columna -->
+
+                <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>                
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="5">No hay informacion para mostrar "{{input.value}}"</td>
+                </tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5,10,20,50,100]" [pageSize]="5"></mat-paginator>
+        </div>
+
+        <hr>
+        <button mat-raised-button class="bg-ops-indigo text-white" (click)="openModalCrear()"><mat-icon>add</mat-icon> Crear</button>
+
+        <button mat-raised-button class="bg-ops-indigo text-white float-right" (click)="openModalCrearRol()"><mat-icon>group_add</mat-icon> Nuevo Rol</button>
+        
+    </mat-card>
+</div>

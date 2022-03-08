@@ -1,0 +1,36 @@
+
+<div class="container">
+
+    <h3>encriptacion desde el servidor</h3>
+    Mensaje del servidor:{{cripted}}
+    <br>
+    Mensaje desenciptado: {{decripted}}
+</div>
+<br>
+<mat-divider></mat-divider>
+
+
+<div class="container">
+
+    <h3>encriptacion desde el cliente</h3>
+
+    <mat-form-field>
+        <mat-label>Mensaje</mat-label>
+        <input matInput type="text" [(ngModel)]="msgCliente" (keyup)="cripto()" autocomplete="off" style="width: 100%;">
+    </mat-form-field>
+    <br>
+    
+    <br>
+    <mat-form-field>
+        <mat-label>Mensaje encriptado</mat-label>
+        <input matInput type="text" readonly [(ngModel)]="msgCripted" style="width: 100%;">
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button color="primary" (click)="enviar()">Enviar</button>
+    <br>
+    <p>Mensaje Enviado: {{msgCripted}}</p>
+    <p>Mensaje desencritado por el servidor: {{msgServerDecripted}}</p>
+
+</div>

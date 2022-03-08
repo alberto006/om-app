@@ -1,0 +1,21 @@
+<div class="container mononoki">
+    <div class="login-form">        
+        <mat-card>
+            <h1 class="txt-ops-indigo mononoki-bold">
+                <mat-icon>person</mat-icon> Inicio de sesion
+            </h1>
+            <hr>
+            <mat-form-field class="form-group">
+                <mat-label>Usuario</mat-label>
+                <input matInput [formControl]="usuario" type="text" />
+            </mat-form-field>
+            
+            <mat-form-field class="form-group">
+                <mat-label>Clave</mat-label>
+                <input matInput [formControl]="password" type="password" />
+            </mat-form-field>
+            <button mat-raised-button class="bg-ops-indigo" style="color:white" (click)="login(usuario.value,password.value)" >Entrar</button>
+            <button mat-raised-button color="accent" class="float-right" [routerLink]="['/portada']">Volver</button>
+        </mat-card>
+    </div>
+</div>

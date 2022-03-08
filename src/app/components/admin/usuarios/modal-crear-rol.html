@@ -1,0 +1,24 @@
+<h2>Roles de usuarios</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <mat-form-field class="w-100"> 
+            <mat-label>Nuevo Rol</mat-label>
+            <input matInput [(ngModel)]="NuevoRol">
+        </mat-form-field>
+    </div>
+    <div class="col-md-4">
+        <button mat-raised-button class="bg-ops-indigo text-white" (click)="CrearRol()">Crear</button>
+    </div>
+</div>
+<hr>
+<h3 class="txt-ops-indigo">Roles existentes</h3>
+
+<mat-list>
+    <mat-list-item *ngFor="let r of Roles" class="txt-ops-indigo">
+        <mat-icon class="mr-2">group_add</mat-icon> {{r.ROL}}
+    </mat-list-item>
+</mat-list>
+
+
+<button mat-raised-button color="warn" class="float-right" (click)="onNoClick()">Cerrar</button>

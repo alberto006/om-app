@@ -1,0 +1,278 @@
+<div class="container container-fluid">
+    <div class="row w-100">
+
+        <div class="col-lg-12">
+
+            <div class="mat-elevation-z8 p-2">
+                <h2>Exportar reportes</h2>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Reporte</mat-label>
+                    <mat-select #reporte (valueChange)="seleccionarReporte(reporte.value)">
+                        <mat-option *ngFor="let r of reportes" [value]="r">
+                            {{r}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="w-100">
+                            <mat-label>Fecha Inicio</mat-label>
+                            <input matInput (keyup)="filtrar($event)" #inicio type="date">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="w-100">
+                            <mat-label>Fecha Fin</mat-label>
+                            <input matInput (keyup)="filtrar($event)" #fin type="date">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <br>
+                <button mat-raised-button color="primary" (click)="generarReporte(inicio.value,fin.value)">Generar
+                    <mat-icon>download</mat-icon>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <mat-divider class="m-4"></mat-divider>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="mat-elevation-z8 p-3">
+                <h2>Resumen por evento</h2>
+                <mat-form-field>
+                    <mat-label>Filtrar</mat-label>
+                    <input matInput (keyup)="filtrar($event)" #input>
+                </mat-form-field>
+
+                <div class=" table-responsive">
+                    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+                        <!--Columna-->
+                        <ng-container matColumnDef="EVENTO">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>EVENTO</th>
+                            <td mat-cell *matCellDef="let row">{{row.EVENTO}}</td>
+                            <td mat-footer-cell *matFooterCellDef class="text-white"> Total Eventos </td>
+                        </ng-container>
+                        <!--Columna-->
+                        <!--Columna-->
+                        <ng-container matColumnDef="MES1">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MES1</th>
+                            <td mat-cell *matCellDef="let row">{{row.MES1}}</td>
+                            <td mat-footer-cell *matFooterCellDef class="text-white"> {{getTotalMes1()}} </td>
+                        </ng-container>
+                        <!--Columna-->
+                        <!--Columna-->
+                        <ng-container matColumnDef="MES2">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MES2</th>
+                            <td mat-cell *matCellDef="let row">{{row.MES2}}</td>
+                            <td mat-footer-cell *matFooterCellDef class="text-white"> {{getTotalMes2()}} </td>
+                        </ng-container>
+                        <!--Columna-->
+                        <!--Columna-->
+                        <ng-container matColumnDef="MES3">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>MES3</th>
+                            <td mat-cell *matCellDef="let row">{{row.MES3}}</td>
+                            <td mat-footer-cell *matFooterCellDef class="text-white"> {{getTotalMes3()}} </td>
+                        </ng-container>
+                        <!--Columna-->
+
+                        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns:displayColumns;"></tr>
+                        <tr mat-footer-row *matFooterRowDef="displayColumns" class="txt-ops-yellow bg-ops-indigo"></tr>
+
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="5">No hay informacion para mostrar "{{input.value}}"</td>
+                        </tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5,10,20,50,100]" [pageSize]="5"></mat-paginator>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="mat-elevation-z8 p-3">
+
+                <div class=" p-3">
+                    <h2>Resumen por CRM</h2>
+                    <mat-form-field>
+                        <mat-label>Filtrar</mat-label>
+                        <input matInput (keyup)="filtrar2($event)" #input>
+                    </mat-form-field>
+
+                    <div class=" table-responsive">
+                        <table mat-table [dataSource]="dataSource2" matSort style="width: 100%;">
+                            <!--Columna-->
+                            <ng-container matColumnDef="ELEMENTO">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>ELEMENTO</th>
+                                <td mat-cell *matCellDef="let row">{{row.ELEMENTO}}</td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H8">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>08:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H8 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H8}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H8}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H9">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>09:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H9 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H9}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H9}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H10">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>10:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H10 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H10}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H10}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H11">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>11:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H11 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H11}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H11}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H12">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>12:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H12 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H12}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H12}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H13">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>13:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H13 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H13}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H13}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H14">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>14:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H14 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H14}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H14}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H15">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>15:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H15 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H15}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H15}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H16">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>16:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H16 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H16}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H16}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H17">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>17:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H17 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H17}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H17}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+                            <!--Columna-->
+                            <ng-container matColumnDef="H18">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>18:00</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngIf="row.H9 == 0; else dng">
+                                        <span class="badge badge-success">{{row.H18}}</span>
+                                    </div>
+                                    <ng-template #dng>
+                                        <span class="badge badge-warning">{{row.H18}}</span>
+                                    </ng-template>
+                                </td>
+                            </ng-container>
+                            <!--Columna-->
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayColumns2"></tr>
+                            <tr mat-row *matRowDef="let row; columns:displayColumns2;"></tr>
+
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="5">No hay informacion para mostrar "{{input.value}}"</td>
+                            </tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[5,10,20,50,100]" [pageSize]="5"></mat-paginator>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
