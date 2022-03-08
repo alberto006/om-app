@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class ModalCreateListComponent implements OnInit {
 
   nombre:string="";
-  
+  fecha_programacion:Date=new Date()
+  total:string = "";
+  enviados:string="";
+  pendientes:string="";
+
 
   constructor() { }
 
