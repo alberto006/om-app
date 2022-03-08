@@ -9,6 +9,8 @@ export class ModalCreateListComponent implements OnInit {
 
   nombre:string="";
   fecha_programacion:Date=new Date()
+  fecha:string=""
+  tiempo:string=""
   total:string = "";
   enviados:string="";
   pendientes:string="";
